@@ -25,7 +25,7 @@ SetWorkingDir %A_ScriptDir%
 OnExit, ScriptToggle
 
 VERSION = 1.0
-SRC_URL := "http://bunchafunk.googlecode.com/svn/trunk/bf3_sprint_toggle"
+SRC_URL := "https://raw.github.com/lonepie/bunchafunk/master/bf3_sprint_toggle"
 DEBUG := false
 
 ;*******************************************************************************
@@ -92,8 +92,8 @@ IniRead, g_SteamOverlay, bf3_sprint_toggle-config.ini, Keybinds, SteamOverlay
 ;				Hotkeys						
 ;*******************************************************************************
 HotKey *%k_ScriptToggle%, ScriptToggle
-;Hotkey, IfWinActive, ahk_class Battlefield 3
-Hotkey, IfWinActive, ahk_class KeyboardTest
+Hotkey, IfWinActive, ahk_class Battlefield 3
+;Hotkey, IfWinActive, ahk_class KeyboardTest
 ; only allow these hotkeys if "Battlefield 3" window is active
 /*
 if EnableCrouchToggle

@@ -2,7 +2,7 @@ AUTHOR:
 -------------
 Jonathon Rogers
 lonepie@gmail.com
-http://code.google.com/p/bunchafunk
+https://github.com/lonepie/bunchafunk
 
 DESCRIPTION:
 -------------
