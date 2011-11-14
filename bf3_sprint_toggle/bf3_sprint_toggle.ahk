@@ -26,12 +26,13 @@ OnExit, ScriptToggle
 
 VERSION = 1.0
 SRC_URL := "https://raw.github.com/lonepie/bunchafunk/master/bf3_sprint_toggle"
-DEBUG := false
+DEBUG := true
 
 ;*******************************************************************************
 ;				Tray Settings					
 ;*******************************************************************************
-TrayTip, Bunchafunk's BF3 AutoHotkey Script v%VERSION%, This script will continue to run in the system tray until closed manually.
+if(!DEBUG)
+	TrayTip, Bunchafunk's BF3 AutoHotkey Script v%VERSION%, This script will continue to run in the system tray until closed manually.
 Menu, Tray, MainWindow
 Menu, Tray, Tip, Bunchafunk's BF3 AutoHotkey Script v%VERSION%
 Menu, Tray, add
@@ -92,7 +93,7 @@ IniRead, g_SteamOverlay, bf3_sprint_toggle-config.ini, Keybinds, SteamOverlay
 ;				Hotkeys						
 ;*******************************************************************************
 HotKey *%k_ScriptToggle%, ScriptToggle
-Hotkey, IfWinActive, ahk_class Battlefield 3
+Hotkey, IfWinActive, Battlefield 3
 ;Hotkey, IfWinActive, ahk_class KeyboardTest
 ; only allow these hotkeys if "Battlefield 3" window is active
 /*
@@ -281,21 +282,16 @@ SprintToggle:
 			DebugMsg("SprintToggle => On")
 			while GetKeyState(g_Forward,"P")
 			{
-				if (crouchState or aimState or not sprintState)
-				{
-					DebugMsg("sprint stopped by state change")
-					break
-				}
 				if GetKeyState(g_Crouch)
 				{
-					;DebugMsg("sprint stopped by crouch")
+					DebugMsg("sprint stopped by crouch")
 					break
 				}
 				if GetKeyState(g_Sprint, "P")
 				{
-					;DebugMsg("sprint pressed, waiting for release...")
+					DebugMsg("sprint pressed, waiting for release...")
 					Keywait, %g_Sprint%
-					;DebugMsg("sprint released, breaking")
+					DebugMsg("sprint released, breaking")
 					break
 				}
 				sleep 50 ; prevents high cpu usage
@@ -530,7 +526,7 @@ ButtonDownloadCancel:
 return
 
 AboutDlg:
-	MsgBox, 64, About, Author: Jonathon Rogers <lonepie@gmail.com>`nURL: http://code.google.com/p/bunchafunk`nVersion: %VERSION%
+	MsgBox, 64, About, Author: Jonathon Rogers <lonepie@gmail.com>`nURL: https://github.com/lonepie/bunchafunk`nVersion: %VERSION%
 return
 
 DebugMsg(StrMsg)
